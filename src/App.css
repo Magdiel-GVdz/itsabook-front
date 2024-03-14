@@ -1,0 +1,75 @@
+/*Formato para las tarjetas de personas a seguir sugeridas*/
+
+
+.iab-follow-card {
+    display: flex;
+    align-items: center;
+    color: #fff
+}
+
+.iab-follow-card-header{
+    display: flex;
+    align-items: center;
+    gap: 4px
+}
+
+.iab-follow-card-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.iab-followcard-infoUserName{
+    opacity: .6;
+}
+
+.iab-profile-picture{
+    width: 48px;
+    height: 48px;
+    border-radius: 1000px
+}
+
+.iab-followCard-button{
+    cursor: pointer;
+    margin-left: 16px;
+    border: 0;
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-weight: bold;
+    border: 1px solid #000;
+    transition: .3s ease background-color;
+}
+
+.iab-followCard-button:hover{
+    opacity: .8;
+}
+
+.iab-followCard-button.is-following{
+    border: 1px solid #bbb;
+    background: transparent;
+    color: #fff;
+    width: 120px;
+}
+
+.iab-followCard-text{
+    display: block;
+}
+
+.iab-followCard-button.is-following:hover{
+    background-color: rgba(255,0, 0, 0.178);
+    color: red;
+    border: 1px solid red;
+    transition: .3s ease all;
+    opacity: 1;
+}
+
+.iab-followCard-button.is-following:hover .iab-followCard-text{
+    display: none;
+}
+
+.iab-followCard-button.is-following:hover .iab-followCard-unfollow{
+    display: block;
+}
+
+.iab-followCard-unfollow{
+    display: none;
+}
