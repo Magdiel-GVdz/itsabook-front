@@ -1,14 +1,14 @@
-body{
-    margin:0;
-    background: #222;
+body {
+    margin: 0;
+    background: #EEEBDD;
     font-family: system-ui;
     display: grid;
-    place-content: center;
-    min-height: 100vh;
-}
+  }
 
-.App{
+.SuggestedFollows{
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 8px;
 }
+
+
