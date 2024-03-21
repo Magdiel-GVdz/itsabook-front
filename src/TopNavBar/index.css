@@ -1,0 +1,13 @@
+header{
+    margin: 0;
+    background: #222;
+    font-family: system-ui;
+    display: grid;
+  }
+  
+  .containerTopNavBar{
+    place-content: start;
+    width: 100vw;
+    min-height: 100vh;
+    background: #ced8ff;
+  }
