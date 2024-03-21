@@ -5,23 +5,13 @@ import { SuggestedFollowsCard } from './SuggestedFollowsCard'
 
 const users=[
     {
-        username: 'DaioJFG',
-        name: 'Jorge Figueroa',
+        username: 'PykeInOhio',
+        common: 'It',
         isFollowing: false
     },
     {
-        username: 'CrusherDoom14',
-        name: 'Jesús García',
-        isFollowing: false
-    },
-    {
-        username: 'OmegaXtra',
-        name: 'Fer Mendoza',
-        isFollowing: false
-    },
-    {
-        username: 'AmeliaStanson',
-        name: 'Jerenis Acosta',
+        username: 'WhatsappDanger',
+        common: 'Song of Fire and Ice',
         isFollowing: false
     }
 ]
@@ -29,15 +19,17 @@ const users=[
 export function App(){
     return(
     <section className="SuggestedFollows">
+        <h1 className='iab-text'>You might interest:</h1>
+        <h1 className='iab-followCard-suggestion'></h1>
         {
             users.map(user => {
-                const {username, name, isFollowing} = user
+                const {username, common, isFollowing} = user
                 return(
                     <SuggestedFollowsCard
                     username={username}
                     initialIsFollowing={isFollowing}
                     >
-                        {name}
+                        {common}
                     </SuggestedFollowsCard>
                 )
             })

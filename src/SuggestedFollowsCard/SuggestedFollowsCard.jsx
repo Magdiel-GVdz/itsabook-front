@@ -27,12 +27,13 @@ export function SuggestedFollowsCard({children, username, initialIsFollowing}){
                 alt="Mini Profile Picture" 
                 src={`https://unavatar.io/${username}`}/>
             <div className='iab-followCard-info'>
-                <strong>{
-                /* Mostrar el nombre */
-                children}</strong>
-                <span 
+            <span 
                 /* Mostrar el usuario */
-                className='iab-followCard-infoUserName'>@{username}</span>
+                className='iab-followard-infoUserName'>{username}</span>
+                <strong> Also likes "{
+                /* Mostrar el nombre */
+                children}"</strong>
+                
             </div>
             </header>
 
