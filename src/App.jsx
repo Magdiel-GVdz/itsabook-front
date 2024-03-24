@@ -10,23 +10,25 @@ import NotificationsPage from "./pages/NotificationsPage";
 import PostPage from "./pages/PostPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsAccout from "./pages/SettingsAccout";
-
+import { Account } from "./components/Account";
 
 export default function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/"                 element={<HomePage />} />
-                <Route path="/login"            element={<LoginPage />} />
-                <Route path="/register"         element={<RegisterPage />} />
-                <Route path="/feed"             element={<FeedPage />} />
-                <Route path="/compose/post"     element={<NewPostPage />} />
-                <Route path="/notifications"    element={<NotificationsPage />} />
-                <Route path="/post/:id"         element={<PostPage />} />
-                <Route path="/profile"          element={<ProfilePage />} />
-                <Route path="/settings/account" element={<SettingsAccout />} />
-                <Route path="*"                 element={<NotFoundPage />} />
-            </Routes>
-        </BrowserRouter>
-    )
+  return (
+    <Account>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/feed" element={<FeedPage />} />
+          <Route path="/compose/post" element={<NewPostPage />} />
+          <Route path="/notifications" element={<NotificationsPage />} />
+          <Route path="/post/:id" element={<PostPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/settings/account" element={<SettingsAccout />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Account>
+  );
 }
