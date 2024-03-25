@@ -1,10 +1,24 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import Pool from "../utils/UserPool";
 
 const AccountContext = createContext();
 
 const Account = (props) => {
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkUserSession = async () => {
+      try {
+        await getSession();
+        setUserLoggedIn(true);
+      } catch (error) {
+        setUserLoggedIn(false);
+      }
+    };
+    checkUserSession();
+  }, []);
+
   const getSession = async () => {
     return await new Promise((resolve, reject) => {
       const user = Pool.getCurrentUser();
@@ -30,13 +44,11 @@ const Account = (props) => {
 
       user.authenticateUser(authDetails, {
         onSuccess: (data) => {
-          console.log("onSuccess: ", data);
           resolve(data);
         },
         onFailure: (error) => {
           console.error("onFailure: ", error);
           reject(error);
-          setError("El usuario o la contraseña son incorrectos.");
         },
         newPasswordRequired: (data) => {
           console.log("newPassordRequired: ", data);
@@ -49,11 +61,24 @@ const Account = (props) => {
     const user = Pool.getCurrentUser();
     if (user) {
       user.signOut();
+      setUserLoggedIn(false);
     }
   };
 
+  const isUserLoggedIn = () => {
+    return userLoggedIn;
+  };
+
   return (
-    <AccountContext.Provider value={{ authenticate, getSession, logout }}>
+    <AccountContext.Provider
+      value={{
+        authenticate,
+        getSession,
+        logout,
+        isUserLoggedIn,
+        setUserLoggedIn,
+      }}
+    >
       {props.children}
     </AccountContext.Provider>
   );

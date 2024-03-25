@@ -1,32 +1,34 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import Status from "../components/Status";
+import { Link, useNavigate } from "react-router-dom";
 
-import { AccountContext, Account } from "../components/Account";
+import { AccountContext } from "../components/Account";
 
 import "./LoginPage.css";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
 
-  const { authenticate } = useContext(AccountContext);
+  const { authenticate, setUserLoggedIn } = useContext(AccountContext);
+
+  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
     authenticate(email, password)
       .then((data) => {
+        navigate("/feed");
+        setUserLoggedIn(true);
         console.log("Logged in!", data);
       })
       .catch((err) => {
-        console.error("Failed to login", data);
+        setError("El usuario o la contraseña son incorrectos.");
       });
   };
 
   return (
     <div>
-      <Status />
       <form onSubmit={onSubmit}>
         <label htmlFor="email">Correo</label>
         <input
