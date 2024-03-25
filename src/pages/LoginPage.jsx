@@ -18,7 +18,6 @@ export default function LoginPage() {
     e.preventDefault();
     authenticate(email, password)
       .then((data) => {
-        navigate("/feed");
         setUserLoggedIn(true);
         console.log("Logged in!", data);
       })

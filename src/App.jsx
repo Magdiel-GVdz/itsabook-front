@@ -23,7 +23,7 @@ export default function App() {
         <Route
           element={
             <ProtectedRoute
-              canActivate={isUserLoggedIn()}
+              canActivate={!isUserLoggedIn()}
               redirectPath="/feed"
             />
           }
