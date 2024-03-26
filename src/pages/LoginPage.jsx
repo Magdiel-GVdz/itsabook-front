@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { AccountContext } from "../components/Account";
+import { Button } from "@mui/material";
+import LoginIcon from '@mui/icons-material/Login';
 
-import "./LoginPage.css";
+
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -11,8 +13,6 @@ export default function LoginPage() {
   const [error, setError] = useState();
 
   const { authenticate, setUserLoggedIn } = useContext(AccountContext);
-
-  const navigate = useNavigate();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ export default function LoginPage() {
 
         {error && <span>{error}</span>}
 
-        <button type="submit">Iniciar sesion</button>
+        <Button startIcon={<LoginIcon />} variant="contained" type="submit">Iniciar sesion</Button>
 
         <Link to="/register">Todavia no tengo cuenta</Link>
       </form>

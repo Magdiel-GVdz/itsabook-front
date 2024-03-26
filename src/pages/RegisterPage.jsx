@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 import UserPool from "../utils/UserPool";
 
-import "./RegisterPage.css";
+
 
 export default function RegisterPage() {
   const {

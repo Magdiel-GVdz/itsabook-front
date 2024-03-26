@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useContext } from "react";
 
-import FeedPage from "./pages/FeedPage";
+import FeedPage from "./pages/feed/FeedPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -45,7 +45,7 @@ export default function App() {
           <Route path="/compose/post" element={<NewPostPage />} />
           <Route path="/notifications" element={<NotificationsPage />} />
           <Route path="/post/:id" element={<PostPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/settings/account" element={<SettingsAccout />} />
         </Route>
 

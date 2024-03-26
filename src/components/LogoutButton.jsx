@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AccountContext } from "./Account";
+import { Button } from "@mui/material";
+import LogoutIcon from '@mui/icons-material/Logout';
 
-function Status() {
+function LogoutButton() {
   const [status, setStatus] = useState(false);
 
   const { getSession, logout } = useContext(AccountContext);
@@ -13,7 +15,7 @@ function Status() {
     });
   }, []);
 
-  return <div>{status ? (<button onClick={logout}>Logout</button>) : "Please login"}</div>;
+  return <div>{status ? (<Button startIcon={<LogoutIcon />} variant="contained" color="error" onClick={logout}> Cerrar sesion</Button>) : "Please login"}</div>;
 }
 
-export default Status;
+export default LogoutButton;
