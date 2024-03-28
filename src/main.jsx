@@ -8,14 +8,13 @@ import '@fontsource/roboto/700.css';
 
 
 import App from "./App";
-import { Account } from "./components/Account";
+import { Account } from "./context/Account";
+import DataAdapter from "./utils/DataAdapter";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <div>
     <Account>
       <App />
     </Account>
-  </div>
 );

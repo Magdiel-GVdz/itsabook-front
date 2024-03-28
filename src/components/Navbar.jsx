@@ -23,7 +23,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import { AccountContext } from "./Account";
+import { AccountContext } from "../context/Account";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -106,7 +106,7 @@ export default function Navbar() {
         <StyledToolbar>
           <Link to="/feed" style={{ textDecoration: "none" }}>
             <Button
-              startIcon={<LocalLibraryRoundedIcon />}
+              startIcon={<LocalLibraryRoundedIcon fontSize="large" />}
               sx={{ color: "white" }}
             >
               <Typography

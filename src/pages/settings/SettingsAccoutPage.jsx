@@ -1,17 +1,17 @@
-import FeedPosts from "./FeedPosts";
+import { Box, Stack } from "@mui/material";
 import Navbar from "../../components/Navbar";
 import SideBar from "../../components/SideBar";
-import { Box, Stack } from "@mui/material";
+import Settings from "./Settings";
 import RightBar from "../../components/RightBar";
 import NewPostButton from "../../components/NewPostButton";
 
-export default function FeedPage() {
+export default function SettingsAccountPage() {
   return (
     <Box>
       <Navbar />
       <Stack direction="row" spacing={2} justifyContent={"space-between"}>
         <SideBar />
-        <FeedPosts />
+        <Settings />
         <RightBar />
         <NewPostButton />
       </Stack>

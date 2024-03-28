@@ -2,16 +2,18 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useContext } from "react";
 
 import FeedPage from "./pages/feed/FeedPage";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import NewPostPage from "./pages/NewPostPage";
+import HomePage from "./pages/home/HomePage";
+import LoginPage from "./pages/login/LoginPage";
+import RegisterPage from "./pages/register/RegisterPage";
+import NewPostPage from "./pages/newPost/NewPostPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import NotificationsPage from "./pages/NotificationsPage";
-import PostPage from "./pages/PostPage";
-import ProfilePage from "./pages/ProfilePage";
-import SettingsAccout from "./pages/SettingsAccout";
-import { AccountContext } from "./components/Account";
+import NotificationsPage from "./pages/notifications/NotificationsPage";
+import PostPage from "./pages/post/PostPage";
+import ProfilePage from "./pages/profile/ProfilePage";
+import SettingsAccoutPage from "./pages/settings/SettingsAccoutPage";
+import BooksPage from "./pages/books/BooksPage";
+import ExplorePage from "./pages/explore/ExplorePage";
+import { AccountContext } from "./context/Account";
 import ProtectedRoute from "./utils/ProtectedRoute";
 
 export default function App() {
@@ -46,7 +48,15 @@ export default function App() {
           <Route path="/notifications" element={<NotificationsPage />} />
           <Route path="/post/:id" element={<PostPage />} />
           <Route path="/profile/:id" element={<ProfilePage />} />
-          <Route path="/settings/account" element={<SettingsAccout />} />
+          <Route path="/settings/account" element={<SettingsAccoutPage />} />
+          <Route path="/books" element={<BooksPage />} />
+          <Route path="/explore" element={<ExplorePage />} />
+          {/* 
+          <Route path="/explore/tag/:tag" element={<ExplorePage />} />
+          <Route path="/explore/author/:author" element={<ExplorePage />} />
+          <Route path="/explore/category/:category" element={<ExplorePage />} />
+          <Route path="/explore/search/:query" element={<ExplorePage />} /> 
+          */}
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
