@@ -15,6 +15,7 @@ import BooksPage from "./pages/books/BooksPage";
 import ExplorePage from "./pages/explore/ExplorePage";
 import { AccountContext } from "./context/Account";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import SearchPage from "./pages/search/SearchPage";
 
 export default function App() {
   const { isUserLoggedIn } = useContext(AccountContext);
@@ -51,11 +52,11 @@ export default function App() {
           <Route path="/settings/account" element={<SettingsAccoutPage />} />
           <Route path="/books" element={<BooksPage />} />
           <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/explore/search/:query" element={<SearchPage />} /> 
           {/* 
           <Route path="/explore/tag/:tag" element={<ExplorePage />} />
           <Route path="/explore/author/:author" element={<ExplorePage />} />
           <Route path="/explore/category/:category" element={<ExplorePage />} />
-          <Route path="/explore/search/:query" element={<ExplorePage />} /> 
           */}
         </Route>
 

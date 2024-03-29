@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Button, Grid, Stack, Typography } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { AccountContext } from "../../context/Account";
 import { useForm } from "react-hook-form";
@@ -9,6 +9,26 @@ import {
 } from "react-hook-form-mui";
 import { Link } from "react-router-dom";
 import LoginIcon from "@mui/icons-material/Login";
+
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        Itsabook
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 function LoginForm() {
   const { authenticate, setUserLoggedIn } = useContext(AccountContext);
@@ -36,9 +56,27 @@ function LoginForm() {
       container
       justifyContent="center"
       alignItems="center"
-      style={{ minHeight: "100vh", overflow: "hidden", margin: 0, padding: 0 }}
+      style={{ minHeight: "100vh", overflow: "hidden" }}
     >
-      <Grid item xs={12} sm={6} md={4}>
+      <Grid item xs={12} textAlign="center">
+        <Grid
+          container
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Typography variant="h1" component="h1" gutterBottom>
+            It's a book!
+          </Typography>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
         <FormContainer onSuccess={onSubmit} onError={console.log("error")}>
           <Stack spacing={2}>
             <TextFieldElement
@@ -50,21 +88,40 @@ function LoginForm() {
               fullWidth
             />
             <PasswordElement
+              fullWidth
               name={"password"}
               label={"Password"}
               control={control}
               required
             />
-            <Button startIcon={<LoginIcon />} variant={"contained"} type={"submit"} disabled={isLoading}>
-            {isLoading ? "Loading" : "Submit"}
+            <Button
+              sx={{ mt: 3, mb: 2 }}
+              fullWidth
+              startIcon={<LoginIcon />}
+              variant={"contained"}
+              type={"submit"}
+              disabled={isLoading}
+            >
+              {isLoading ? "Loading" : "Submit"}
             </Button>
             {/* <pre>{JSON.stringify(watch(), null, 2)}</pre> */}
           </Stack>
-          <Link to="/register">
-            <Typography variant={"body1"} component={"span"}>
-              Don't have an account? Sign up here.{" "}
-            </Typography>
-          </Link>
+
+          <Grid container>
+            <Grid item xs>
+              <Link to="#">
+                <Typography variant="body2">{"Forgot password? "}</Typography>
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link to="/register">
+                <Typography variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Typography>
+              </Link>
+            </Grid>
+          </Grid>
+          <Copyright sx={{ mt: 5 }} />
         </FormContainer>
       </Grid>
     </Grid>
