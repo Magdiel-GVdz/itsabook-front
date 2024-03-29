@@ -46,6 +46,8 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 const SearchNavBar = () => {
     const [query, setQuery] = useState("");
 
+    
+
     const handleKeyDown = (e) => {
         if (e.key === "Enter" && query !== "") {
           // Realizar la búsqueda aquí
