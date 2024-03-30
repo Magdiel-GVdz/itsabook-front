@@ -20,8 +20,16 @@ const defaultTheme = createTheme();
 export default function LoginPage() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Grid container sx={{ height: "100vh" }}>
-        <CssBaseline />
+      <CssBaseline />
+      <Grid
+        container
+        sx={{
+          height: '100vh',
+          margin: 0,
+          padding: 0,
+          overflow: 'hidden',
+        }}
+      >
         <Grid
           item
           xs={false}
@@ -29,14 +37,14 @@ export default function LoginPage() {
           md={7}
           sx={{
             backgroundImage:
-              "url(https://source.unsplash.com/random?wallpapers)",
-            backgroundRepeat: "no-repeat",
+              'url(https://source.unsplash.com/random?wallpapers)',
+            backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
-              t.palette.mode === "light"
+              t.palette.mode === 'light'
                 ? t.palette.grey[50]
                 : t.palette.grey[900],
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
         />
         <Grid
@@ -47,7 +55,7 @@ export default function LoginPage() {
           md={5}
           alignItems="center"
           justifyContent="center"
-          sx={{ padding: "20px" }}
+          sx={{ padding: '25px' }}
         >
           <LoginForm />
         </Grid>

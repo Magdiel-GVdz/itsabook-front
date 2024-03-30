@@ -65,7 +65,10 @@ function LoginForm() {
           alignItems="center"
           justifyContent="center"
         >
-          <Typography variant="h1" component="h1" gutterBottom>
+          <link rel="stylesheet" 
+          href="https://fonts.googleapis.com/css2?family=Allura&display=swap" />
+          <Typography variant="h1" component="h1" gutterBottom 
+          style={{fontSize:'120px', fontFamily: 'Allura, cursive'}}>
             It's a book!
           </Typography>
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
