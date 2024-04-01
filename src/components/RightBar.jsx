@@ -11,7 +11,10 @@ const RightBar = () => {
         display: { xs: "none", sm: "block" },
       }}
     >
+      <Box position="fixed" top={80} bottom={0}>
+
       RightBar
+      </Box>
     </Box>
   );
 };

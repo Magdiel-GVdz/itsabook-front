@@ -21,7 +21,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" to="https://itsabook.site/">
         Itsabook
       </Link>{" "}
       {new Date().getFullYear()}
@@ -65,12 +65,22 @@ function LoginForm() {
           alignItems="center"
           justifyContent="center"
         >
-          <link rel="stylesheet" 
-          href="https://fonts.googleapis.com/css2?family=Allura&display=swap" />
-          <Typography variant="h1" component="h1" gutterBottom 
-          style={{fontSize:'120px', fontFamily: 'Allura, cursive'}}>
-            It's a book!
-          </Typography>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+          />
+          <div>
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Typography
+                variant="h1"
+                component="h1"
+                gutterBottom
+                style={{ fontSize: "120px", fontFamily: "Allura, cursive" }}
+              >
+                It's a book!
+              </Typography>
+            </Link>
+          </div>
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>

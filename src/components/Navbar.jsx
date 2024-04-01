@@ -1,4 +1,4 @@
-import { Fragment, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -15,6 +15,7 @@ import {
   Menu,
   MenuItem,
   Divider,
+  Box,
 } from "@mui/material";
 import LocalLibraryRoundedIcon from "@mui/icons-material/LocalLibraryRounded";
 
@@ -62,8 +63,8 @@ export default function Navbar() {
   };
 
   return (
-    <Fragment>
-      <AppBar position="sticky">
+    <Box>
+      <AppBar position="fixed">
         <StyledToolbar>
           <Link to="/feed" style={{ textDecoration: "none" }}>
             <Button
@@ -175,6 +176,6 @@ export default function Navbar() {
           Logout
         </MenuItem>
       </Menu>
-    </Fragment>
+    </Box>
   );
 }
