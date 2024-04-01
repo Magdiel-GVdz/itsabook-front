@@ -16,7 +16,6 @@ export default function NewPostPage() {
           <NewPost />
         </SelectedBookProvider>
         <RightBar />
-        <NewPostButton />
       </Stack>
     </Box>
   );
