@@ -10,7 +10,7 @@ const FeedPosts = () => {
     <Box flex={4} p={2}>
       <Box mt={"60"} position="sticky">
         <h1>hola</h1>
-        <pre>{JSON.stringify(userAttributes, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(userAttributes, null, 2)}</pre> */}
       </Box>
     </Box>
   );
