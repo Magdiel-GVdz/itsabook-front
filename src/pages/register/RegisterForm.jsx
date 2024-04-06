@@ -25,16 +25,26 @@ import {
 import { AccountContext } from "../../context/Account";
 
 export default function RegisterForm() {
-  const {
-    signUp
-  } = useContext(AccountContext)
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  //   watch,
+  // } = useForm();
+  // const [selectedDate, setSelectedDate] = useState(null); 
 
-  const onSubmit = (data) => {
-    signUp(data)  
+
+  const { signUp, errorMessage } = useContext(AccountContext);
+
+  const onSubmit = async (data) => {
+    await signUp(data);
   };
 
   return (
-    <FormContainer onSuccess={(e) => onSubmit(e)}>
+    <FormContainer
+      onSuccess={(e) => onSubmit(e)}
+      onError={(e) => console.log("error", e)}
+    >
       <Stack spacing={2}>
         {/* <TextFieldElement name={"name"} label={"Name"} required /> */}
 
@@ -44,19 +54,33 @@ export default function RegisterForm() {
           required
           type={"email"}
         />
-        <PasswordElement label={"Password"} required name={"password"} />
+        <PasswordElement
+          label={"Password"}
+          required
+          name={"password"}
+          // validate={(value) => {
+          //   const passwordRegex =
+          //     /^(?=.*[a-záéíóúüñ])(?=.*[A-ZÁÉÍÓÚÜÑ])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
+          //   return (
+          //     passwordRegex.test(value) ||
+          //     "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo especial: !@#$%^&*"
+          //   );
+          // }}
+        />
 
         <PasswordRepeatElement
           passwordFieldName={"password"}
           name={"password-repeat"}
           label={"Repeat Password"}
           required
+          validate
         />
         <CheckboxElement name={"agree"} label={"Agree"} required />
 
         <Button variant="contained" type="submit">
           Sign Up
         </Button>
+        {errorMessage && <span style={{ color: "red" }}>{errorMessage}</span>}
       </Stack>
     </FormContainer>
   );

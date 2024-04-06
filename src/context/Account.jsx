@@ -8,6 +8,7 @@ const Account = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userAttributes, setUserAttributes] = useState(null);
   const [userToConfirm, setUserToConfirm] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const setUserConfirmCode = (user) => setUserToConfirm(user);
 
@@ -107,9 +108,10 @@ const Account = (props) => {
   const signUp = (data) => {
     Pool.signUp(data.email, data.password, [], null, (err, result) => {
       if (err) {
-        console.error(err);
+        setErrorMessage(err.message);
         return;
       }
+      setErrorMessage(null);
       setUserToConfirm(result.user.username);
       console.log("userToConfirm: ", result.user.username);
     });
@@ -235,7 +237,7 @@ const Account = (props) => {
         userToConfirm,
         setUserConfirmCode,
         userAttributes,
-        
+        errorMessage
       }}
     >
       {props.children}

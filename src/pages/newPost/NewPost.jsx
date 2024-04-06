@@ -13,6 +13,7 @@ import {
 import React, { useContext, useState } from "react";
 import SearchBook from "../../components/SearchBook";
 import { SelectedBookContext } from "../../context/SelectedBookProvider";
+import { AccountContext } from "../../context/Account";
 
 // Estilo para el modal
 const StyledModal = styled(Modal)`
@@ -115,6 +116,7 @@ function ReviewForm({ selectedBook, value, onSubmit }) {
 }
 
 function NewPost() {
+  const { userAttributes } = useContext(AccountContext);
   const [value, setValue] = useState(0);
   const { selectedBook, handleClose, handleOpen, open } = useContext(SelectedBookContext);
 
@@ -129,6 +131,7 @@ function NewPost() {
       return;
     }
     const postData = {
+      userid : userAttributes.sub,
       selectedBook: selectedBook,
       ratingValue: value,
       reviewText: review,
