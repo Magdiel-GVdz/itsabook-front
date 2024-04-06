@@ -25,7 +25,7 @@ export default function RegisterPage() {
   const [selectedDate, setSelectedDate] = useState(null); // Estado local para la fecha seleccionada
   
 
-
+  
   const onSubmit = handleSubmit((data) => {
     UserPool.signUp(data.correo, data.contraseña, [], null, (err, result) => {
       if (err) {
