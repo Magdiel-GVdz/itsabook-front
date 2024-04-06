@@ -10,13 +10,12 @@ const SelectedBookProvider = ({ children }) => {
 
   useEffect(() => {
     handleClose();
-  
-    
-  }, [selectedBook])
-  
+  }, [selectedBook]);
 
   return (
-    <SelectedBookContext.Provider value={{ selectedBook, setSelectedBook, handleClose, handleOpen, open }}>
+    <SelectedBookContext.Provider
+      value={{ selectedBook, setSelectedBook, handleClose, handleOpen, open }}
+    >
       {children}
     </SelectedBookContext.Provider>
   );

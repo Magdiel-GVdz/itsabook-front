@@ -6,7 +6,7 @@ const AccountContext = createContext();
 
 const Account = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-
+  const [userAttributes, setUserAttributes] = useState(null);
   const [userToConfirm, setUserToConfirm] = useState(null);
 
   const setUserConfirmCode = (user) => setUserToConfirm(user);
@@ -23,22 +23,49 @@ const Account = (props) => {
     checkUserSession();
   }, []);
 
+  
+
+  const getUserAttributes = (user) => {
+    return new Promise((resolve, reject) => {
+      user.getUserAttributes((err, result) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        const userAttributes = result.reduce((acc, { Name, Value }) => {
+          acc[Name] = Value;
+          return acc;
+        }, {});
+        resolve(userAttributes);
+      });
+    });
+  };
+
   const getSession = async () => {
     return await new Promise((resolve, reject) => {
       const user = Pool.getCurrentUser();
-      if (user) {
-        user.getSession((err, session) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(session);
-          }
-        });
-      } else {
+      if (!user) {
         reject("No hay usuario activo.");
+        return;
       }
+      user.getSession((err, session) => {
+        if (err) {
+          reject(err);
+        } else {
+          getUserAttributes(user)
+          .then((attributes) => {
+            setUserAttributes(attributes);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+          console.log(session)
+          resolve(session);
+        }
+      });
     });
   };
+
 
   const authenticate = async (Username, Password) => {
     return await new Promise((resolve, reject) => {
@@ -48,6 +75,13 @@ const Account = (props) => {
 
       user.authenticateUser(authDetails, {
         onSuccess: (data) => {
+          getUserAttributes(user)
+          .then((attributes) => {
+            setUserAttributes(attributes);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
           resolve(data);
         },
         onFailure: (error) => {
@@ -66,6 +100,7 @@ const Account = (props) => {
     if (user) {
       user.signOut();
       setUserLoggedIn(false);
+      setUserAttributes(null);
     }
   };
 
@@ -76,7 +111,7 @@ const Account = (props) => {
         return;
       }
       setUserToConfirm(result.user.username);
-      console.log("userToConfirm: ",result.user.username);
+      console.log("userToConfirm: ", result.user.username);
     });
   };
 
@@ -93,7 +128,7 @@ const Account = (props) => {
         } else {
           resolve(result);
           setUserToConfirm(null);
-          window.location.href = '/login';
+          window.location.href = "/login";
         }
       });
     });
@@ -126,18 +161,6 @@ const Account = (props) => {
     });
   };
 
-  const getUserAttributes = async (Username) => {
-    return await new Promise((resolve, reject) => {
-      const user = new CognitoUser({ Username, Pool });
-      user.getUserAttributes((err, result) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(result);
-        }
-      });
-    });
-  };
   const updateUserAttributes = async (Username, Attributes) => {
     return await new Promise((resolve, reject) => {
       const user = new CognitoUser({ Username, Pool });
@@ -211,6 +234,8 @@ const Account = (props) => {
         changePassword,
         userToConfirm,
         setUserConfirmCode,
+        userAttributes,
+        
       }}
     >
       {props.children}

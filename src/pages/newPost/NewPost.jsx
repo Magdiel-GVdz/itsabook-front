@@ -81,12 +81,12 @@ function BookDetails({ book }) {
   );
 }
 
-function ReviwForm() {
-  const [review, setReview] = useState('');
+function ReviewForm({ selectedBook, value, onSubmit }) {
+  const [review, setReview] = useState("");
   const handleReviewSubmit = () => {
     // Aquí puedes manejar la lógica para enviar la reseña
-    console.log('Reseña:', review);
-  }
+    onSubmit(selectedBook, value, review);
+  };
 
   return (
     <Box mt={2}>
@@ -106,7 +106,7 @@ function ReviwForm() {
         color="primary"
         onClick={handleReviewSubmit}
         sx={{ mt: 2 }}
-        style={{ marginBottom: '32px' }}
+        style={{ marginBottom: "32px" }}
       >
         Publish review
       </Button>
@@ -116,8 +116,26 @@ function ReviwForm() {
 
 function NewPost() {
   const [value, setValue] = useState(0);
-  const { selectedBook, handleClose, handleOpen, open } =
-    useContext(SelectedBookContext);
+  const { selectedBook, handleClose, handleOpen, open } = useContext(SelectedBookContext);
+
+  const handleReviewSubmit = (selectedBook, value, review) => {
+    // Aquí puedes manejar la lógica para enviar la reseña
+    if (!selectedBook) {
+      alert("Please select a book first.");
+      return;
+    }
+    if (value === 0 || value === null) {
+      alert("Please rate the book first.");
+      return;
+    }
+    const postData = {
+      selectedBook: selectedBook,
+      ratingValue: value,
+      reviewText: review,
+    };
+
+    console.log("Post Data:", postData);
+  };
 
   return (
     <>
@@ -150,7 +168,11 @@ function NewPost() {
               />
             </Box>
           )}
-          <ReviwForm/>
+          <ReviewForm
+            selectedBook={selectedBook}
+            value={value}
+            onSubmit={handleReviewSubmit}
+          />
         </Box>
       </Box>
 
