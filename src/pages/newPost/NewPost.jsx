@@ -131,7 +131,7 @@ function NewPost() {
       return;
     }
     const postData = {
-      userid : userAttributes.sub,
+      sub : userAttributes.sub,
       selectedBook: selectedBook,
       ratingValue: value,
       reviewText: review,
