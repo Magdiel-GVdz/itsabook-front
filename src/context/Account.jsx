@@ -3,7 +3,7 @@ import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import Pool from "../utils/UserPool";
 
 const AccountContext = createContext();
-
+6
 const Account = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userAttributes, setUserAttributes] = useState(null);
