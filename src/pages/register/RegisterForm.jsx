@@ -10,9 +10,14 @@ import {
   FormControlLabel,
   FormGroup,
   Stack,
+  Grid,
   TextField,
+  Container,
+  Avatar,
+  CssBaseline,
+  ThemeProvider,
 } from "@mui/material";
-import { CheckBox } from "@mui/icons-material";
+import { CheckBox, LockOutlined } from "@mui/icons-material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useContext, useState } from "react";
 import {
@@ -23,6 +28,7 @@ import {
   TextFieldElement,
 } from "react-hook-form-mui";
 import { AccountContext } from "../../context/Account";
+
 
 export default function RegisterForm() {
   // const {
@@ -41,47 +47,90 @@ export default function RegisterForm() {
   };
 
   return (
-    <FormContainer
-      onSuccess={(e) => onSubmit(e)}
-      onError={(e) => console.log("error", e)}
-    >
-      <Stack spacing={2}>
-        {/* <TextFieldElement name={"name"} label={"Name"} required /> */}
+         <Container component={"main"} maxWidth="md">
 
-        <TextFieldElement
-          name={"email"}
-          label={"Email"}
-          required
-          type={"email"}
-        />
-        <PasswordElement
-          label={"Password"}
-          required
-          name={"password"}
-          // validate={(value) => {
-          //   const passwordRegex =
-          //     /^(?=.*[a-záéíóúüñ])(?=.*[A-ZÁÉÍÓÚÜÑ])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
-          //   return (
-          //     passwordRegex.test(value) ||
-          //     "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo especial: !@#$%^&*"
-          //   );
-          // }}
-        />
+        <FormContainer
+          onSuccess={(e) => onSubmit(e)}
+          onError={(e) => console.log("error", e)}
+        >
+          <CssBaseline />
 
-        <PasswordRepeatElement
-          passwordFieldName={"password"}
-          name={"password-repeat"}
-          label={"Repeat Password"}
-          required
-          validate
-        />
-        <CheckboxElement name={"agree"} label={"Agree"} required />
+          <Box
+            sx={{
+              marginTop: 30,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar alignItems="center" sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                <LockOutlined />
+              </Avatar>
+            <h2 fontWeight="bold">Sign in</h2>
+            <Stack spacing={1}>
+              {/* <TextFieldElement name={"name"} label={"Name"} required /> */}
 
-        <Button variant="contained" type="submit">
-          Sign Up
-        </Button>
-        {errorMessage && <span style={{ color: "red" }}>{errorMessage}</span>}
-      </Stack>
-    </FormContainer>
+              
+
+              
+              <Box component="form" sx={{ mt: 1 }}>
+                <Grid container spacing={3} >
+                  <Grid item xs={16}>
+                    <TextFieldElement
+                      autoComplete="Given email address"
+                      fullWidth="true"
+                      name={"email"}
+                      label={"Email"}
+                      required
+                      type={"email"}
+                      autoFocus
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} >
+                    <PasswordElement
+                      required
+                      fullWidth="true"
+                      type="password"
+                      autoComplete="current-password"
+                      label={"Password"}
+                      name={"password"}
+                    // validate={(value) => {
+                    //   const passwordRegex =
+                    //     /^(?=.*[a-záéíóúüñ])(?=.*[A-ZÁÉÍÓÚÜÑ])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
+                    //   return (
+                    //     passwordRegex.test(value) ||
+                    //     "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo especial: !@#$%^&*"
+                    //   );
+                    // }}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <PasswordRepeatElement
+                      passwordFieldName={"password"}
+                      name={"password-repeat"}
+                      label={"Repeat Password"}
+                      required
+                      fullWidth={true}
+                      type="password"
+                      validate
+                    />
+                  </Grid>
+
+                  <CheckboxElement name={"agree"} label={"Agree"} required />
+
+                  <Button variant="contained" type="submit" fullWidth={true}>
+                    Sign Up
+                  </Button>
+
+                  {errorMessage && <span style={{ color: "red" }}>{errorMessage}</span>}
+                </Grid>
+              </Box>
+            </Stack>
+          </Box>
+        </FormContainer>
+      </Container>
+  
   );
 }
