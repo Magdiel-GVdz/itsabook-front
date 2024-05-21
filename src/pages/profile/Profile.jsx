@@ -1,17 +1,12 @@
-import { Box } from '@mui/material'
-import React, { useContext } from 'react'
-import { AccountContext } from "../../context/Account";
+import React, { useContext, useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 
 function Profile() {
-const {getUserAttributes} = useContext(AccountContext);
-
-console.log(getUserAttributes);
   return (
-    <Box bgcolor={"red"} flex={4} p={2}>
-      profile
-      
+    <Box bgcolor={"red"} flex={4} p={5}>
+    <h1>Aqui voy a editar el Profile</h1>
     </Box>
   )
 }
 
-export default Profile
+export default Profile;
