@@ -7,7 +7,7 @@ const FeedPosts = () => {
   const { userAttributes } = useContext(AccountContext);
 
   return (
-    <Box flex={4} p={2}>
+    <Box flex={4} p={5}>
       <Box mt={"60"} position="sticky">
         <h1>hola</h1>
         {/* <pre>{JSON.stringify(userAttributes, null, 2)}</pre> */}
