@@ -1,3 +1,5 @@
+
+
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
@@ -6,6 +8,7 @@ export default function HomePage() {
             <h1>Home</h1>
             <Link to="/login">Iniciar sesion</Link>
             <Link to="/register">Crear cuenta</Link>
+            
         </div>
     )
 }
