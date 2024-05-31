@@ -47,7 +47,7 @@ export default function RegisterForm() {
     >
       
       <Stack spacing={2}>
-        {/* <TextFieldElement name={"name"} label={"Name"} required /> */}
+        
         <TextFieldElement
         name= {"nickname"}
         label={"Nickname"}
@@ -66,14 +66,6 @@ export default function RegisterForm() {
           label={"Password"}
           required
           name={"password"}
-          // validate={(value) => {
-          //   const passwordRegex =
-          //     /^(?=.*[a-záéíóúüñ])(?=.*[A-ZÁÉÍÓÚÜÑ])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{8,}$/;
-          //   return (
-          //     passwordRegex.test(value) ||
-          //     "La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un símbolo especial: !@#$%^&*"
-          //   );
-          // }}
         />
 
         <PasswordRepeatElement

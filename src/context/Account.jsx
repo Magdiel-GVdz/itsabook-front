@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
+import { CognitoUser, AuthenticationDetails, CognitoUserPool, CognitoUserAttribute } from "amazon-cognito-identity-js";
 import Pool from "../utils/UserPool";
 
 const AccountContext = createContext();
@@ -106,7 +106,14 @@ const Account = (props) => {
   };
 
   const signUp = (data) => {
-    Pool.signUp(data.email, data.password, [data.nickname], null, (err, result) => {
+    var attributeList = [];
+    console.log("signUp: ", data);
+    const attributeNickname = new CognitoUserAttribute({
+      Name: "nickname",
+      Value: data.nickname,
+    })
+    attributeList.push(attributeNickname);
+    Pool.signUp(data.email, data.password, attributeList, null, (err, result) => {
       if (err) {
         setErrorMessage(err.message);
         return;
