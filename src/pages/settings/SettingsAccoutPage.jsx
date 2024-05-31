@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Stack } from "@mui/material";
 import Navbar from "../../components/Navbar";
 import SideBar from "../../components/SideBar";
@@ -12,7 +13,6 @@ export default function SettingsAccountPage() {
       <Stack direction="row" spacing={2} justifyContent={"space-between"}>
         <SideBar />
         <Settings />
-        <RightBar />
         <NewPostButton />
       </Stack>
     </Box>
