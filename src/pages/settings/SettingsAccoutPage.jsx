@@ -3,7 +3,6 @@ import { Box, Stack } from "@mui/material";
 import Navbar from "../../components/Navbar";
 import SideBar from "../../components/SideBar";
 import Settings from "./Settings";
-import RightBar from "../../components/RightBar";
 import NewPostButton from "../../components/NewPostButton";
 
 export default function SettingsAccountPage() {

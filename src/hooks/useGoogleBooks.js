@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { json } from "react-router";
 
 const useGoogleBooks = (query = "Brandon Sanderson", category = 0) => {
   const [data, setData] = useState(null);
@@ -20,10 +19,7 @@ const useGoogleBooks = (query = "Brandon Sanderson", category = 0) => {
         const response = await fetch(
           buildUrl(query, QUERY_CATEGORYS[category])
         );
-        //console.log(query, category, QUERY_CATEGORYS[category]);
         const jsonData = await response.json();
-        //console.log(jsonData);
-        //console.log(jsonData.items);
         setData({
           query,
           category: QUERY_CATEGORYS[category],
@@ -50,7 +46,6 @@ const useGoogleBooks = (query = "Brandon Sanderson", category = 0) => {
           })),
           totalItems: jsonData.totalItems,
         });
-        //console.log(data);
         setLoading(false);
         setError(null);
       } catch (error) {
@@ -61,7 +56,7 @@ const useGoogleBooks = (query = "Brandon Sanderson", category = 0) => {
       }
     };
 
-    if (category < 0 || category > QUERY_CATEGORYS.length - 1) {
+    if (category < 0 || category >= QUERY_CATEGORYS.length) {
       setError("Invalid category");
       setLoading(false);
     } else {
@@ -73,7 +68,7 @@ const useGoogleBooks = (query = "Brandon Sanderson", category = 0) => {
 };
 
 const buildUrl = (query = "Brandon Sanderson", category = "intitle") => {
-  return `https://www.googleapis.com/books/v1/volumes?q=${query}+${category}`;
+  return `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}+${category}`;
 };
 
 export default useGoogleBooks;
