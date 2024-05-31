@@ -8,11 +8,7 @@ import AvatarSection from './AvatarSection';
 import CancelConfirmationDialog from './CancelConfirmationDialog';
 
 function Settings() {
-  const { getUserAttributes } = useContext(AccountContext);
-  const [userAttributes, setUserAttributes] = useState({
-    email: 'angeldragneel100172@gmail.com',
-    nickname: 'Shiro',
-  });
+  const { getUserAttributes, userAttributes, updateUserAttributes } = useContext(AccountContext);
   const [editedUserAttributes, setEditedUserAttributes] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
@@ -20,10 +16,10 @@ function Settings() {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
-  // Fetch user attributes when component mounts
   useEffect(() => {
+    // Fetch user attributes when component mounts
     getUserAttributes().then(attributes => {
-      setUserAttributes(attributes);
+      setEditedUserAttributes(attributes);
     }).catch(error => {
       console.error('Failed to fetch user attributes:', error);
     });
@@ -33,7 +29,6 @@ function Settings() {
   const handleEditClick = () => {
     setIsEditing(!isEditing);
     if (!isEditing) {
-      setEditedUserAttributes({});
       setErrorMessage('');
     }
   };
@@ -55,9 +50,6 @@ function Settings() {
       setErrorMessage('');
     } else {
       setErrorMessage('*Please fill every field!*');
-      setTimeout(() => {
-        setErrorMessage('');
-      }, 3000); // Clear error message after 3 seconds
     }
   };
 
@@ -95,17 +87,22 @@ function Settings() {
 
   // Confirm and save changes
   const handleConfirmSave = () => {
-    setUserAttributes(prevState => ({
-      ...prevState,
-      ...editedUserAttributes
-    }));
-    setIsConfirmDialogOpen(false);
-    setIsEditing(false);
-    setSuccessMessage('Changes saved successfully!');
-    // Clear success message after 3 seconds
-    setTimeout(() => {
-      setSuccessMessage('');
-    }, 3000);
+    updateUserAttributes(userAttributes.sub, editedUserAttributes)
+      .then(() => {
+        setSuccessMessage('Changes saved successfully!');
+        // Clear success message after 3 seconds
+        setTimeout(() => {
+          setSuccessMessage('');
+        }, 3000);
+      })
+      .catch(error => {
+        console.error('Error updating user attributes:', error);
+        setErrorMessage('Failed to save changes.');
+      })
+      .finally(() => {
+        setIsConfirmDialogOpen(false);
+        setIsEditing(false);
+      });
   };
 
   return (

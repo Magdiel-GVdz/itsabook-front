@@ -3,7 +3,7 @@ import { CognitoUser, AuthenticationDetails, CognitoUserPool, CognitoUserAttribu
 import Pool from "../utils/UserPool";
 
 const AccountContext = createContext();
-6
+
 const Account = (props) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userAttributes, setUserAttributes] = useState(null);
@@ -24,8 +24,6 @@ const Account = (props) => {
     checkUserSession();
   }, []);
 
-  
-
   const getUserAttributes = (user) => {
     return new Promise((resolve, reject) => {
       user.getUserAttributes((err, result) => {
@@ -37,6 +35,7 @@ const Account = (props) => {
           acc[Name] = Value;
           return acc;
         }, {});
+        console.log('User attributes fetched:', userAttributes); // Debug log
         resolve(userAttributes);
       });
     });
@@ -54,19 +53,18 @@ const Account = (props) => {
           reject(err);
         } else {
           getUserAttributes(user)
-          .then((attributes) => {
-            setUserAttributes(attributes);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-          console.log(session)
-          resolve(session);
+            .then((attributes) => {
+              setUserAttributes(attributes);
+              resolve(session);
+            })
+            .catch((err) => {
+              console.error(err);
+              reject(err);
+            });
         }
       });
     });
   };
-
 
   const authenticate = async (Username, Password) => {
     return await new Promise((resolve, reject) => {
@@ -77,12 +75,12 @@ const Account = (props) => {
       user.authenticateUser(authDetails, {
         onSuccess: (data) => {
           getUserAttributes(user)
-          .then((attributes) => {
-            setUserAttributes(attributes);
-          })
-          .catch((err) => {
-            console.error(err);
-          });
+            .then((attributes) => {
+              setUserAttributes(attributes);
+            })
+            .catch((err) => {
+              console.error(err);
+            });
           resolve(data);
         },
         onFailure: (error) => {
@@ -96,6 +94,7 @@ const Account = (props) => {
       });
     });
   };
+
   const logout = async () => {
     const user = Pool.getCurrentUser();
     if (user) {
@@ -111,7 +110,7 @@ const Account = (props) => {
     const attributeNickname = new CognitoUserAttribute({
       Name: "nickname",
       Value: data.nickname,
-    })
+    });
     attributeList.push(attributeNickname);
     Pool.signUp(data.email, data.password, attributeList, null, (err, result) => {
       if (err) {
@@ -182,6 +181,7 @@ const Account = (props) => {
       });
     });
   };
+
   const deleteUser = async (Username) => {
     return await new Promise((resolve, reject) => {
       const user = new CognitoUser({ Username, Pool });
@@ -194,6 +194,7 @@ const Account = (props) => {
       });
     });
   };
+
   const confirmForgotPassword = async (
     Username,
     ConfirmationCode,
@@ -211,6 +212,7 @@ const Account = (props) => {
       });
     });
   };
+
   const changePassword = async (Username, OldPassword, NewPassword) => {
     return await new Promise((resolve, reject) => {
       const user = new CognitoUser({ Username, Pool });
