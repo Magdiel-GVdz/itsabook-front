@@ -101,7 +101,7 @@ export default function Navbar() {
                 aria-haspopup="true"
                 aria-expanded={open ? "true" : undefined}
               >
-                <Avatar src="https://unavatar.io/pikachu" />
+                <Avatar src="https://unavatar.io/jfgjorge" />
               </IconButton>
             </Tooltip>
           </Icons>
@@ -157,7 +157,7 @@ export default function Navbar() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem component={Link} to="/profile/1" onClick={handleClose}>
-          <Avatar src="https://unavatar.io/pikachu" /> Profile
+          <Avatar src="https://unavatar.io/jfgjorge" /> Profile
         </MenuItem>
 
         <Divider />

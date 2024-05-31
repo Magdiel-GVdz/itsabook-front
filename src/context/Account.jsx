@@ -106,7 +106,7 @@ const Account = (props) => {
   };
 
   const signUp = (data) => {
-    Pool.signUp(data.email, data.password, [], null, (err, result) => {
+    Pool.signUp(data.email, data.password, [data.nickname], null, (err, result) => {
       if (err) {
         setErrorMessage(err.message);
         return;

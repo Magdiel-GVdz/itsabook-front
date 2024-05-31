@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
 import { Box } from '@mui/material';
+import ProfilePicture from './ProfilePicture'; 
 
 function Profile() {
   return (
-    <Box bgcolor={"red"} flex={4} p={5}>
-    <h1>Aqui voy a editar el Profile</h1>
+    <Box flex={5} p={8}>
+      <ProfilePicture /> 
     </Box>
-  )
+  );
 }
 
 export default Profile;
