@@ -1,20 +1,8 @@
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { parseISO, differenceInYears } from "date-fns";
-
-import UserPool from "../../utils/UserPool";
 import {
-  Box,
   Button,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
   Stack,
-  TextField,
 } from "@mui/material";
-import { CheckBox } from "@mui/icons-material";
-import { DatePicker } from "@mui/x-date-pickers";
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import {
   CheckboxElement,
   FormContainer,

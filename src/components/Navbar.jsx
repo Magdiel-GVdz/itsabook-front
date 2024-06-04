@@ -4,11 +4,9 @@ import {
   AppBar,
   Avatar,
   Button,
-  InputBase,
   Toolbar,
   Typography,
   styled,
-  alpha,
   Badge,
   Tooltip,
   IconButton,
@@ -21,7 +19,6 @@ import LocalLibraryRoundedIcon from "@mui/icons-material/LocalLibraryRounded";
 
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { AccountContext } from "../context/Account";
@@ -83,15 +80,6 @@ export default function Navbar() {
           <SearchNavBar />
 
           <Icons>
-            <Link
-              to="/notifications"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <Badge badgeContent={4} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </Link>
-
             <Tooltip title="Account settings">
               <IconButton
                 onClick={handleClick}
@@ -115,7 +103,7 @@ export default function Navbar() {
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
             >
-              <Avatar src="https://unavatar.io/pikachu" />
+              <Avatar src="https://unavatar.io/jfgjorge" />
             </Button>
           </UserBox>
         </StyledToolbar>

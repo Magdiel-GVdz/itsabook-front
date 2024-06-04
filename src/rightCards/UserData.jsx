@@ -5,14 +5,13 @@ const UserData = () => {
         profilePicture: "https://unavatar.io/tifalockhart"
       },
       {
-        username: "Cloud",
-        profilePicture: "https://unavatar.io/cloudstrife"
+        username: "Sephiroth",
+        profilePicture: "https://unavatar.io/sephiroth"
       },
       {
         username: "Aerith",
         profilePicture: "https://unavatar.io/aerith"
       },
-      // Agrega más usuarios si lo deseas
     ];
   };
   

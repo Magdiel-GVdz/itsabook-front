@@ -4,25 +4,19 @@ const useGoogleBooks = (query = "Brandon Sanderson", category = 0) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const QUERY_CATEGORYS = [
-    "intitle",
-    "inauthor",
-    "inpublisher",
-    "subject",
-    "isbn",
-  ];
+  const QUERY_CATEGORIES = ["intitle", "inauthor"];
 
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
       try {
         const response = await fetch(
-          buildUrl(query, QUERY_CATEGORYS[category])
+          buildUrl(query, QUERY_CATEGORIES[category])
         );
         const jsonData = await response.json();
         setData({
           query,
-          category: QUERY_CATEGORYS[category],
+          category: QUERY_CATEGORIES[category],
           data: jsonData.items.map((item) => ({
             id: item.id,
             publisher: item.volumeInfo.publisher ?? "Publisher not available",
@@ -56,7 +50,7 @@ const useGoogleBooks = (query = "Brandon Sanderson", category = 0) => {
       }
     };
 
-    if (category < 0 || category >= QUERY_CATEGORYS.length) {
+    if (category < 0 || category >= QUERY_CATEGORIES.length) {
       setError("Invalid category");
       setLoading(false);
     } else {

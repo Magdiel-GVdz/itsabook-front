@@ -12,7 +12,6 @@ import PostPage from "./pages/post/PostPage";
 import ProfilePage from "./pages/profile/ProfilePage";
 import SettingsAccoutPage from "./pages/settings/SettingsAccoutPage";
 import BooksPage from "./pages/books/BooksPage";
-import ExplorePage from "./pages/explore/ExplorePage";
 import { AccountContext } from "./context/Account";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import SearchPage from "./pages/search/SearchPage";
@@ -51,7 +50,6 @@ export default function App() {
           <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/settings/account" element={<SettingsAccoutPage />} />
           <Route path="/books" element={<BooksPage />} />
-          <Route path="/explore" element={<ExplorePage />} />
           <Route path="/explore/search/:query" element={<SearchPage />} /> 
           {/* 
           <Route path="/explore/tag/:tag" element={<ExplorePage />} />

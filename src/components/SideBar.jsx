@@ -42,18 +42,7 @@ const SideBar = () => {
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItemButton>
-          </Link>
-          <Link
-            to={"/explore"}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                <SearchRoundedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Explore" />
-            </ListItemButton>
-          </Link>
+          </Link>          
           <Link
             to={"/books"}
             style={{ textDecoration: "none", color: "inherit" }}
