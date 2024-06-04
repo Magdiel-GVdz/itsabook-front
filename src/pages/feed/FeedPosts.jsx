@@ -1,51 +1,66 @@
-import React, { useState } from "react";
-import { Box } from "@mui/material";
-import UserInfo from "./UserInfo";
-import ReviewContent from "./ReviewContent";
-import LikeButton from "./LikeButton";
-import CommentButton from "./CommentButton";
-import LikesCounter from "./LikesCounter";
-import CommentSection from "./CommentSection";
+import { Box, Typography } from "@mui/material";
+import FeedPostCard from "./FeedPostCard";
 
-const FeedPostCard = ({ post }) => {
-  const [liked, setLiked] = useState(false);
-  const [likesCount, setLikesCount] = useState(0);
-  const [commenting, setCommenting] = useState(false);
-  const [comment, setComment] = useState("");
-
-  const handleLikeClick = () => {
-    if (liked) {
-      setLikesCount(likesCount - 1);
-    } else {
-      setLikesCount(likesCount + 1);
+const FeedPosts = () => {
+  // Datos de prueba
+  const testPosts = [
+    {
+      userNickname: "Daio914",
+      userProfilePicture: "https://unavatar.io/jfgjorge",
+      selectedBook: {
+        title: "The Name of the Wind",
+        authors: ["Patrick Rothfuss"],
+        publisher: "DAW Books",
+        publishedDate: "2007-03-27",
+        pageCount: 662,
+        language: "es",
+        previewLink: "http://books.google.com/books?id=The_name_of_the_wind",
+        averageRating: 4.5,
+        ratingsCount: 3456,
+        categories: ["Fantasy"],
+        description: "An epic fantasy novel...",
+        image: "http://books.google.com/cover_image.jpg",
+        link: "http://books.google.com/books?id=The_name_of_the_wind"
+      },
+      ratingValue: 5,
+      reviewText: "Waos"
+    },
+    {
+      userNickname: "Daio914",
+      userProfilePicture: "https://unavatar.io/jfgjorge",
+      selectedBook: {
+        title: "The Wise Man's Fear",
+        authors: ["Patrick Rothfuss"],
+        publisher: "DAW Books",
+        publishedDate: "2011-03-01",
+        pageCount: 1008,
+        language: "es",
+        previewLink: "http://books.google.com/books?id=The_wise_mans_fear",
+        averageRating: 4.6,
+        ratingsCount: 5678,
+        categories: ["Fantasy"],
+        description: "The continuation of Kvothe's epic story...",
+        image: "http://books.google.com/cover_image_temor.jpg",
+        link: "http://books.google.com/books?id=The_wise_mans_fear"
+      },
+      ratingValue: 5,
+      reviewText: "Double Waos"
     }
-    setLiked(!liked);
-  };
-
-  const handleCommentClick = () => {
-    setCommenting(true);
-  };
-
-  const handleCommentSubmit = () => {
-    // Lógica para enviar el comentario
-    console.log("Comentario enviado:", comment);
-    setComment("");
-  };
+  ];
 
   return (
-    <Box sx={{ backgroundColor: 'lightgrey', p: 2, borderRadius: 2, mb: 2, boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)' }}>
-      <UserInfo userProfilePicture={post.userProfilePicture} userNickname={post.userNickname} ratingValue={post.ratingValue} />
-      <ReviewContent reviewText={post.reviewText} selectedBook={post.selectedBook} />
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 1 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <LikeButton liked={liked} likesCount={likesCount} handleLikeClick={handleLikeClick} />
-          <CommentButton handleCommentClick={handleCommentClick} />
-        </Box>
-        <LikesCounter likesCount={likesCount} />
+    <Box flex={4} p={5}>
+      <Box mt={2}>
+        <Typography variant="h4" gutterBottom>
+          Feed Posts
+        </Typography>
+
+        {testPosts.map((post, index) => (
+          <FeedPostCard key={index} post={post} />
+        ))}
       </Box>
-      <CommentSection commenting={commenting} comment={comment} handleCommentSubmit={handleCommentSubmit} setComment={setComment} />
     </Box>
   );
 };
 
-export default FeedPostCard;
+export default FeedPosts;
