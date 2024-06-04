@@ -8,7 +8,7 @@ import AvatarSection from './AvatarSection';
 import CancelConfirmationDialog from './CancelConfirmationDialog';
 
 function Settings() {
-  const { getUserAttributes, userAttributes, updateUserAttributes } = useContext(AccountContext);
+  const { getUserAttributes, updateUserAttributes, userAttributes } = useContext(AccountContext);
   const [editedUserAttributes, setEditedUserAttributes] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
@@ -17,15 +17,15 @@ function Settings() {
   const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
-    // Fetch user attributes when component mounts
-    getUserAttributes().then(attributes => {
-      setEditedUserAttributes(attributes);
-    }).catch(error => {
-      console.error('Failed to fetch user attributes:', error);
-    });
+    getUserAttributes()
+      .then(attributes => {
+        setEditedUserAttributes(attributes);
+      })
+      .catch(error => {
+        console.error('Failed to fetch user attributes:', error);
+      });
   }, [getUserAttributes]);
 
-  // Toggle editing mode
   const handleEditClick = () => {
     setIsEditing(!isEditing);
     if (!isEditing) {
@@ -33,7 +33,6 @@ function Settings() {
     }
   };
 
-  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditedUserAttributes(prevState => ({
@@ -42,7 +41,6 @@ function Settings() {
     }));
   };
 
-  // Validate fields before saving
   const handleSaveClick = () => {
     const isFieldsValid = validateFields();
     if (isFieldsValid) {
@@ -57,7 +55,6 @@ function Settings() {
     return editedUserAttributes.email !== '' && editedUserAttributes.nickname !== '';
   };
 
-  // Handle cancel button click
   const handleCancelClick = () => {
     if (isEditing && Object.keys(editedUserAttributes).length > 0) {
       setIsCancelConfirmationOpen(true);
@@ -66,31 +63,26 @@ function Settings() {
     }
   };
 
-  // Confirm cancel and discard changes
   const handleConfirmCancel = () => {
     handleCancelEditing();
     setIsCancelConfirmationOpen(false);
   };
 
-  // Cancel editing and discard changes
   const handleCancelEditing = () => {
     setIsEditing(false);
     setEditedUserAttributes({});
     setErrorMessage('');
   };
 
-  // Handle confirmation dialog close
   const handleConfirmDialogClose = () => {
     setIsConfirmDialogOpen(false);
     setIsEditing(true);
   };
 
-  // Confirm and save changes
   const handleConfirmSave = () => {
-    updateUserAttributes(userAttributes.sub, editedUserAttributes)
+    updateUserAttributes(editedUserAttributes)
       .then(() => {
         setSuccessMessage('Changes saved successfully!');
-        // Clear success message after 3 seconds
         setTimeout(() => {
           setSuccessMessage('');
         }, 3000);
