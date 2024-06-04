@@ -7,7 +7,7 @@ import CommentButton from "./CommentButton";
 import LikesCounter from "./LikesCounter";
 import CommentSection from "./CommentSection";
 
-const FeedPostCard = ({ post }) => {
+const FeedPostCard = ({ post, userNickname }) => {
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [commenting, setCommenting] = useState(false);
@@ -33,8 +33,8 @@ const FeedPostCard = ({ post }) => {
   };
 
   return (
-    <Box sx={{ backgroundColor: 'lightgrey', p: 2, borderRadius: 2, mb: 2, boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)' }}>
-      <UserInfo userProfilePicture={post.userProfilePicture} userNickname={post.userNickname} ratingValue={post.ratingValue} />
+    <Box sx={{marginTop: '30px' , backgroundColor: 'lightgrey', p: 2, borderRadius: 2, mb: 2, boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)' }}>
+      <UserInfo userProfilePicture={post.userProfilePicture} userNickname={userNickname} ratingValue={post.ratingValue} />
       <ReviewContent reviewText={post.reviewText} selectedBook={post.selectedBook} />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 1 }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>

@@ -7,7 +7,9 @@ const UserInfo = ({ userProfilePicture, userNickname, ratingValue }) => (
     <Typography variant="h6" ml={2}>
       {userNickname}
     </Typography>
-    <Rating name="read-only" value={ratingValue} readOnly />
+    <Box ml="auto"> {/* Esto mueve el rating al final de la línea */}
+      <Rating name="read-only" value={ratingValue} readOnly />
+    </Box>
   </Box>
 );
 

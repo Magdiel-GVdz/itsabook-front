@@ -1,11 +1,16 @@
+import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
 import FeedPostCard from "./FeedPostCard";
+import { AccountContext } from '../../context/Account'; 
 
 const FeedPosts = () => {
+  const { userAttributes } = useContext(AccountContext);
+  const userNickname = userAttributes ? userAttributes.nickname : "Usuario";
+
   // Datos de prueba
   const testPosts = [
     {
-      userNickname: "Daio914",
+      userNickname: userNickname,
       userProfilePicture: "https://unavatar.io/jfgjorge",
       selectedBook: {
         title: "The Name of the Wind",
@@ -26,7 +31,7 @@ const FeedPosts = () => {
       reviewText: "Waos"
     },
     {
-      userNickname: "Daio914",
+      userNickname: userNickname,
       userProfilePicture: "https://unavatar.io/jfgjorge",
       selectedBook: {
         title: "The Wise Man's Fear",
@@ -51,12 +56,12 @@ const FeedPosts = () => {
   return (
     <Box flex={4} p={5}>
       <Box mt={2}>
-        <Typography variant="h4" gutterBottom>
+        <Typography marginTop={'30px'} variant="h4" gutterBottom>
           Feed Posts
         </Typography>
 
         {testPosts.map((post, index) => (
-          <FeedPostCard key={index} post={post} />
+          <FeedPostCard key={index} post={post} userNickname={userNickname} />
         ))}
       </Box>
     </Box>
