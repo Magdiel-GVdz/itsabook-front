@@ -12,13 +12,16 @@ import { AccountContext } from "../../context/Account";
 import BookDetails from "./BookDetails.jsx";
 import ReviewForm from "./ReviewForm.jsx";
 import { StyledModal, StyledModalContent } from "./StyledComponents.jsx";
+import useReviewPosting from "../../hooks/useReviewPosting";
+import axios from "axios";
 
 function NewPost() {
   const { userAttributes } = useContext(AccountContext);
   const [value, setValue] = useState(0);
   const { selectedBook, handleClose, handleOpen, open } = useContext(SelectedBookContext);
+  const { loading, error, success, postReview } = useReviewPosting();
 
-  const handleReviewSubmit = (selectedBook, value, review) => {
+  const handleReviewSubmit = async (selectedBook, value, review) => {
     if (!selectedBook) {
       alert("Please select a book first.");
       return;
@@ -35,6 +38,8 @@ function NewPost() {
     };
 
     console.log("Post Data:", postData);
+
+    await postReview(postData);
   };
 
   return (

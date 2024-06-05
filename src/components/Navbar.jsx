@@ -17,12 +17,10 @@ import {
 } from "@mui/material";
 import LocalLibraryRoundedIcon from "@mui/icons-material/LocalLibraryRounded";
 
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { AccountContext } from "../context/Account";
-import SearchNavBar from "./SearchNavBar";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -76,9 +74,6 @@ export default function Navbar() {
               </Typography>{" "}
             </Button>
           </Link>
-
-          <SearchNavBar />
-
           <Icons>
             <Tooltip title="Account settings">
               <IconButton
