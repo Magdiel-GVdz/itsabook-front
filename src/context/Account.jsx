@@ -169,13 +169,25 @@ const Account = (props) => {
     });
   };
 
-  const updateUserAttributes = async (Username, Attributes) => {
+  const updateUserAttributes = async (attributes) => {
     return await new Promise((resolve, reject) => {
-      const user = new CognitoUser({ Username, Pool });
-      user.updateAttributes(Attributes, (err, result) => {
+      const user = Pool.getCurrentUser();
+      if (!user) {
+        reject("No hay usuario activo.");
+        return;
+      }
+
+      const attributeList = Object.entries(attributes).map(
+        ([Name, Value]) => new CognitoUserAttribute({ Name, Value })
+      );
+
+      user.updateAttributes(attributeList, (err, result) => {
         if (err) {
           reject(err);
         } else {
+          getUserAttributes(user).then((attributes) => {
+            setUserAttributes(attributes);
+          });
           resolve(result);
         }
       });
