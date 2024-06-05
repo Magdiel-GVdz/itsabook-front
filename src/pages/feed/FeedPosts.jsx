@@ -56,7 +56,7 @@ const FeedPosts = () => {
   return (
     <Box flex={4} p={5}>
       <Box mt={2}>
-        <Typography marginTop={'30px'} variant="h4" gutterBottom>
+        <Typography color={'white'} marginTop={'30px'} variant="h4" gutterBottom>
           Feed Posts
         </Typography>
 

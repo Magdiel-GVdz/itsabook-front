@@ -10,7 +10,7 @@ const RightBar = () => {
 
   return (
     <Box
-      bgcolor={"lightblue"}
+      bgcolor={"#1e1e1e"}
       flex={2}
       p={2}
       sx={{
@@ -18,7 +18,7 @@ const RightBar = () => {
       }}
     >
       <Box position="fixed" top={80} bottom={10}>
-        <Typography variant="h6" mb={2}>
+        <Typography color="white" variant="h6" mb={2}>
           Users you may like
         </Typography>
         {users.map((user, index) => (

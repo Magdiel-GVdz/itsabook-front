@@ -59,7 +59,7 @@ export default function Navbar() {
 
   return (
     <Box>
-      <AppBar position="fixed">
+      <AppBar position="fixed" sx={{ backgroundColor: "#000000", boxShadow: "0px 4px 10px rgba(0,0,0,0.5)" }}>
         <StyledToolbar>
           <Link to="/feed" style={{ textDecoration: "none" }}>
             <Button
@@ -113,6 +113,8 @@ export default function Navbar() {
         PaperProps={{
           elevation: 0,
           sx: {
+            backgroundColor: "#3c3c3c",
+            color: "white",
             overflow: "visible",
             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             mt: 1.5,
@@ -130,7 +132,7 @@ export default function Navbar() {
               right: 14,
               width: 10,
               height: 10,
-              bgcolor: "background.paper",
+              bgcolor: "#3c3c3c",
               transform: "translateY(-50%) rotate(45deg)",
               zIndex: 0,
             },

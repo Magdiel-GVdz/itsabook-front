@@ -1,4 +1,3 @@
-// LikeButton.jsx
 import React from "react";
 import { Button } from "@mui/material";
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -11,7 +10,18 @@ const LikeButton = ({ liked, likesCount, handleLikeClick }) => (
     size="small" 
     startIcon={liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
     onClick={handleLikeClick}
-    sx={{ backgroundColor: 'transparent', color: liked ? 'red' : 'black', boxShadow: 'none', '&:hover': { backgroundColor: '#f5f5f5' } }}
+    sx={{ 
+      backgroundColor: 'transparent', 
+      color: 'white', 
+      boxShadow: 'none', 
+      '&:hover': { 
+        backgroundColor: 'white',
+        color: 'black'
+      },
+      '&:hover svg': {
+        color: 'black'
+      }
+    }}
   >
     {liked ? 'Dislike' : 'Like'}
   </Button>

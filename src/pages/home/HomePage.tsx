@@ -13,21 +13,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+// Define el tema personalizado
+const theme = createTheme({
+  palette: {
+    text: {
+      primary: "#ffffff", 
+    },
+  },
+});
 
 export default function SignInSide() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -40,8 +33,9 @@ export default function SignInSide() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
+        <CssBaseline />
         <Grid
           item
           xs={false}
@@ -69,7 +63,7 @@ export default function SignInSide() {
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" sx={{ color: '#ffffff' }}> {/* Texto blanco */}
               Sign in
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -101,23 +95,30 @@ export default function SignInSide() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, bgcolor: '#ffffff', color: 'white', '&:hover': { bgcolor: '#f5f5f5' }}} // Fondo blanco, texto negro, hover gris claro
               >
                 Sign In
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
+                  <Link href="#" variant="body2" sx={{ color: '#ffffff' }}> {/* Texto blanco */}
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
+                  <Link href="#" variant="body2" sx={{ color: '#ffffff' }}> {/* Texto blanco */}
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
+              <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 5, color: '#ffffff' }}> {/* Texto blanco */}
+                {'Copyright © '}
+                <Link color="inherit" href="https://mui.com/">
+                  Your Website
+                </Link>{' '}
+                {new Date().getFullYear()}
+                {'.'}
+              </Typography>
             </Box>
           </Box>
         </Grid>

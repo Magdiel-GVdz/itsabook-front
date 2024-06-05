@@ -51,11 +51,6 @@ export default function App() {
           <Route path="/settings/account" element={<SettingsAccoutPage />} />
           <Route path="/books" element={<BooksPage />} />
           <Route path="/explore/search/:query" element={<SearchPage />} /> 
-          {/* 
-          <Route path="/explore/tag/:tag" element={<ExplorePage />} />
-          <Route path="/explore/author/:author" element={<ExplorePage />} />
-          <Route path="/explore/category/:category" element={<ExplorePage />} />
-          */}
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

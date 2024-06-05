@@ -10,7 +10,7 @@ function ReviewForm({ selectedBook, value, onSubmit }) {
 
   return (
     <Box mt={2}>
-      <Typography variant="h6">Write a review</Typography>
+      <Typography color="white" variant="h6">Write a review</Typography>
       <TextField
         fullWidth
         multiline
@@ -19,13 +19,15 @@ function ReviewForm({ selectedBook, value, onSubmit }) {
         label="Write a review"
         value={review}
         onChange={(event) => setReview(event.target.value)}
+        InputLabelProps={{ style: { color: 'white' } }}
+        InputProps={{ style: { color: 'white' } }}
         sx={{ mt: 2 }}
       />
       <Button
         variant="contained"
         color="primary"
         onClick={handleReviewSubmit}
-        sx={{ mt: 2 }}
+        sx={{ mt: 2, bgcolor: 'white', color: 'black', '&:hover': { bgcolor: '#f5f5f5' } }}
         style={{ marginBottom: "32px" }}
       >
         Publish review

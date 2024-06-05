@@ -1,57 +1,50 @@
 import React from "react";
 import {
-  Avatar,
   Box,
   Fab,
   List,
-  ListItem,
-  ListItemAvatar,
   ListItemButton,
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import BookIcon from "@mui/icons-material/Book";
-import Settings from "@mui/icons-material/Settings";
-import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
     <Box
-      // bgcolor={"skyblue"}
-
+      bgcolor={"#1e1e1e"}
+      color={"white"}
       flex={1}
       p={2}
       sx={{
         display: { xs: "none", sm: "block" },
       }}
     >
-      <Box position="fixed" top={60} bottom={0} >
+      <Box position="fixed" top={60} bottom={0}>
         <List justifyItems={"center"}>
           <Link
             to={"/feed"}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <ListItemButton>
-              <ListItemIcon>
+            <ListItemButton sx={styles.listItem}>
+              <ListItemIcon sx={styles.icon}>
                 <HomeIcon />
               </ListItemIcon>
-              <ListItemText primary="Home" />
+              <ListItemText primary="Home" sx={styles.text} />
             </ListItemButton>
-          </Link>          
+          </Link>
           <Link
             to={"/books"}
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            <ListItemButton>
-              <ListItemIcon>
+            <ListItemButton sx={styles.listItem}>
+              <ListItemIcon sx={styles.icon}>
                 <BookIcon />
               </ListItemIcon>
-              <ListItemText primary="Books" />
+              <ListItemText primary="Books" sx={styles.text} />
             </ListItemButton>
           </Link>
         </List>
@@ -69,14 +62,42 @@ const SideBar = () => {
             aria-label="add"
             component={Link}
             to="/compose/post"
+            sx={styles.fab}
           >
-            <HistoryEduIcon sx={{ mr: 1 }} />
+            <HistoryEduIcon sx={styles.fabIcon} />
             Create post
           </Fab>
         </Box>
       </Box>
     </Box>
   );
+};
+
+const styles = {
+  listItem: {
+    "&:hover": {
+      backgroundColor: "#4d4d4d",
+      borderRadius: "30px",
+    },
+  },
+  icon: {
+    color: "white",
+  },
+  text: {
+    color: "white",
+  },
+  fab: {
+    backgroundColor: "white",
+    color: "black",
+    "&:hover": {
+      backgroundColor: "lightgray",
+    },
+    borderRadius: "30px",
+  },
+  fabIcon: {
+    color: "black",
+    marginRight: "30px",
+  },
 };
 
 export default SideBar;

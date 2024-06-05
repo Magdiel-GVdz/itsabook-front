@@ -27,7 +27,7 @@ function Books() {
 
   return (
     <Box flex={4} p={2}>
-      <Typography variant="h4" gutterBottom>
+      <Typography  variant="h4" gutterBottom>
         Search for Books
       </Typography>
       <Box display="flex" mb={2}>
@@ -37,10 +37,13 @@ function Books() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           fullWidth
+          InputLabelProps={{ style: { color: 'white' } }}
+          InputProps={{ style: { color: 'white' } }}
         />
         <FormControl variant="outlined" sx={{ ml: 2, minWidth: 120 }}>
-          <InputLabel>Category</InputLabel>
+          <InputLabel sx={{ color: 'white' }}>Category</InputLabel>
           <Select
+          sx={{ color: 'white' }}
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             label="Category"
@@ -49,7 +52,7 @@ function Books() {
             <MenuItem value={1}>Author</MenuItem>
           </Select>
         </FormControl>
-        <Button variant="contained" color="primary" onClick={handleSearch} sx={{ ml: 2 }}>
+        <Button variant="contained" color="primary" onClick={handleSearch} sx={{ ml: 2, bgcolor: 'white', color: 'black', '&:hover': { bgcolor: '#f5f5f5' } }}>
           Search
         </Button>
       </Box>

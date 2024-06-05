@@ -4,7 +4,6 @@ import { AccountContext } from "../../context/Account";
 import EditIcon from '@mui/icons-material/Edit';
 import EditForm from './EditForm';
 import ConfirmDialog from './ConfirmDialog';
-import AvatarSection from './AvatarSection';
 import CancelConfirmationDialog from './CancelConfirmationDialog';
 
 function Settings() {
@@ -98,9 +97,8 @@ function Settings() {
   };
 
   return (
-    <Box bgcolor={"white"} flex={4} p={5}>
-      <h1>Account Settings</h1>
-      <AvatarSection />
+    <Box bgcolor={"gray"} flex={4} p={5}>
+      <h1 style={{ color: 'white' }}>Account Settings</h1>
       <EditForm
         userAttributes={userAttributes}
         editedUserAttributes={editedUserAttributes}
@@ -111,11 +109,17 @@ function Settings() {
       <Typography color="success">{successMessage}</Typography>
       <Box mt={4} textAlign="right">
         {isEditing && (
-          <Button variant="contained" color="error" onClick={handleCancelClick} sx={{ marginRight: 2 }}>
+          <Button variant="contained" color="error" onClick={handleCancelClick} sx={{ color: 'white', bgcolor: 'black', marginRight: 2 }}>
             Cancel
           </Button>
         )}
-        <Button variant="contained" color="primary" startIcon={<EditIcon />} onClick={isEditing ? handleSaveClick : handleEditClick}>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          startIcon={<EditIcon />} 
+          onClick={isEditing ? handleSaveClick : handleEditClick} 
+          sx={{ color: 'black', bgcolor: 'white', '&:hover': { bgcolor: '#f5f5f5' } }}
+        >
           {isEditing ? 'Save' : 'Edit'}
         </Button>
       </Box>

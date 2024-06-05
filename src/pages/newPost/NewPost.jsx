@@ -4,7 +4,7 @@ import {
   Button,
   Rating,
   Typography,
-  Modal
+  CircularProgress
 } from "@mui/material";
 import SearchBook from "../../components/SearchBook";
 import { SelectedBookContext } from "../../context/SelectedBookProvider";
@@ -13,7 +13,6 @@ import BookDetails from "./BookDetails.jsx";
 import ReviewForm from "./ReviewForm.jsx";
 import { StyledModal, StyledModalContent } from "./StyledComponents.jsx";
 import useReviewPosting from "../../hooks/useReviewPosting";
-import axios from "axios";
 
 function NewPost() {
   const { userAttributes } = useContext(AccountContext);
@@ -31,13 +30,11 @@ function NewPost() {
       return;
     }
     const postData = {
-      sub : userAttributes.sub,
+      sub: userAttributes.sub,
       selectedBook: selectedBook,
       ratingValue: value,
       reviewText: review,
     };
-
-    console.log("Post Data:", postData);
 
     await postReview(postData);
   };
@@ -54,8 +51,13 @@ function NewPost() {
         height="100vh"
       >
         <Box position="relative" top={80}>
-          <Typography variant="h6">CREATE POST</Typography>
-          <Button variant="contained" color="primary" onClick={handleOpen}>
+          <Typography color={"white"} variant="h6">CREATE POST</Typography>
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={handleOpen} 
+            sx={{ bgcolor: 'white', color: 'black', '&:hover': { bgcolor: '#f5f5f5' } }}
+          >
             Select book
           </Button>
           {selectedBook && <BookDetails book={selectedBook} />}
@@ -78,6 +80,9 @@ function NewPost() {
             value={value}
             onSubmit={handleReviewSubmit}
           />
+          {loading && <CircularProgress />}
+          {error && <Typography color="error">Failed to post review: {error}</Typography>}
+          {success && <Typography color="primary">Review posted successfully!</Typography>}
         </Box>
       </Box>
 

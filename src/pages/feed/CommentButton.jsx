@@ -9,7 +9,19 @@ const CommentButton = ({ handleCommentClick }) => (
     size="small" 
     startIcon={<ChatIcon />}
     onClick={handleCommentClick}
-    sx={{ ml: 1, backgroundColor: 'transparent', color: 'black', boxShadow: 'none', '&:hover': { backgroundColor: '#f5f5f5' } }}
+    sx={{ 
+      ml: 1, 
+      backgroundColor: 'transparent', 
+      color: 'white', 
+      boxShadow: 'none', 
+      '&:hover': { 
+        backgroundColor: '#f5f5f5', 
+        color: 'black' 
+      },
+      '&:hover svg': {
+        color: 'black'
+      }
+    }}
   >
     Comment
   </Button>

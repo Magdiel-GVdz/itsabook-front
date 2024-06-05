@@ -1,16 +1,20 @@
-
 import { BusinessTwoTone } from "@mui/icons-material";
 import { Avatar, Box, Button, CssBaseline, Grid, Typography } from "@mui/material";
-
 import { Link } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const defaultTheme = createTheme();
+// Define el tema personalizado
+const theme = createTheme({
+  palette: {
+    text: {
+      primary: "#000000", // Texto negro
+    },
+  },
+});
 
 export default function HomePage() {
     return (
-
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -52,7 +56,7 @@ export default function HomePage() {
                             variant="h1"
                             component="h1"
                             gutterBottom
-                            style={{ fontSize: "120px", fontFamily: "Allura, cursive" }}
+                            style={{ fontSize: "120px", fontFamily: "Allura, cursive", color: "#ffffff" }} // Color blanco
                         >
                             It's a book!
                         </Typography>
@@ -76,16 +80,16 @@ export default function HomePage() {
                             to="/login"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 1, mb: 2 }}
+                            sx={{ mt: 1, mb: 2, bgcolor: '#ffffff', color: '#000000', '&:hover': { bgcolor: '#f5f5f5' }}} // Fondo blanco, texto negro, hover gris claro
                         >
-                            Iniciar Sesion
+                            Sign in
                         </Button>
                         <Button
                             component={Link}
                             to="/register"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 1, mb: 2 }}
+                            sx={{ mt: 1, mb: 2, bgcolor: '#ffffff', color: '#000000', '&:hover': { bgcolor: '#f5f5f5' }}} // Fondo blanco, texto negro, hover gris claro
                         >
                             Crear Cuenta
                         </Button>

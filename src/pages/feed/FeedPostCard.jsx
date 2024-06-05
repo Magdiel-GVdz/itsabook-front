@@ -33,9 +33,9 @@ const FeedPostCard = ({ post, userNickname }) => {
   };
 
   return (
-    <Box sx={{marginTop: '30px' , backgroundColor: 'lightgrey', p: 2, borderRadius: 2, mb: 2, boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)' }}>
+    <Box sx={{ marginTop: '30px', backgroundColor: '#111111', color: 'white', p: 2, borderRadius: 2, mb: 2, boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.2)' }}>
       <UserInfo userProfilePicture={post.userProfilePicture} userNickname={userNickname} ratingValue={post.ratingValue} />
-      <ReviewContent reviewText={post.reviewText} selectedBook={post.selectedBook} />
+      <ReviewContent reviewText={post.reviewText} selectedBook={post.selectedBook} sx={{ backgroundColor: '#1e1e1e', color: 'white', borderRadius: 2, p: 2, mb: 1 }} />
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mt: 1 }}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <LikeButton liked={liked} likesCount={likesCount} handleLikeClick={handleLikeClick} />
