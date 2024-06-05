@@ -19,15 +19,15 @@ const FeedPosts = () => {
         publishedDate: "2007-03-27",
         pageCount: 662,
         language: "es",
-        previewLink: "http://books.google.com/books?id=The_name_of_the_wind",
+        previewLink: "http://books.google.com.mx/books?id=Y3OypwAACAAJ&dq=El+nombre+del+viento+intitle&hl=&cd=2&source=gbs_api",
         averageRating: 4.5,
         ratingsCount: 3456,
         categories: ["Fantasy"],
         description: "An epic fantasy novel...",
-        image: "http://books.google.com/cover_image.jpg",
-        link: "http://books.google.com/books?id=The_name_of_the_wind"
+        image: "http://books.google.com/books/content?id=Y3OypwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+        link: "https://books.google.com.mx/books?id=Y3OypwAACAAJ&dq=El+nombre+del+viento+intitle&hl=&source=gbs_api"
       },
-      ratingValue: 5,
+      ratingValue: 4,
       reviewText: "Waos"
     },
     {
@@ -40,12 +40,12 @@ const FeedPosts = () => {
         publishedDate: "2011-03-01",
         pageCount: 1008,
         language: "es",
-        previewLink: "http://books.google.com/books?id=The_wise_mans_fear",
+        previewLink: "http://books.google.com.mx/books?id=UbSipwAACAAJ&dq=El+temor+de+un+hombre+sabio+intitle&hl=&cd=2&source=gbs_api",
         averageRating: 4.6,
         ratingsCount: 5678,
         categories: ["Fantasy"],
         description: "The continuation of Kvothe's epic story...",
-        image: "http://books.google.com/cover_image_temor.jpg",
+        image: "http://books.google.com/books/content?id=UbSipwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
         link: "http://books.google.com/books?id=The_wise_mans_fear"
       },
       ratingValue: 5,

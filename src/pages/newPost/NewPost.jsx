@@ -63,7 +63,7 @@ function NewPost() {
           {selectedBook && <BookDetails book={selectedBook} />}
           {selectedBook && (
             <Box>
-              <Typography variant="h6" mt={2}>
+              <Typography color="white" variant="h6" mt={2}>
                 Rate this book!
               </Typography>
               <Rating

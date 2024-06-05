@@ -1,20 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Box, Typography, Button, IconButton, TextField, InputAdornment, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import { Box, Typography, Button, Link } from '@mui/material';
 import { AccountContext } from "../../context/Account";
 import EditIcon from '@mui/icons-material/Edit';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import ChangePassword from '../../../node_modules/@aws-amplify/ui-react/dist/esm/components/AccountSettings/ChangePassword/ChangePassword'
+import EditForm from './EditForm';
+import ConfirmDialog from './ConfirmDialog';
+import CancelConfirmationDialog from './CancelConfirmationDialog';
+import ChangePasswordDialog from './ChangePasswordDialog';
 
 function Settings() {
-  const { getUserAttributes, updateUserAttributes, userAttributes } = useContext(AccountContext);
+  const { getUserAttributes, updateUserAttributes, userAttributes, changePassword } = useContext(AccountContext);
   const [editedUserAttributes, setEditedUserAttributes] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
   const [isCancelConfirmationOpen, setIsCancelConfirmationOpen] = useState(false);
+  const [isPasswordDialogOpen, setIsPasswordDialogOpen] = useState(false); // Nuevo estado
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // Estado para mostrar/ocultar la contraseña en el campo de contraseña
 
   useEffect(() => {
     getUserAttributes()
@@ -106,6 +107,29 @@ function Settings() {
       });
   };
 
+  const handleOpenPasswordDialog = () => {
+    setIsPasswordDialogOpen(true);
+  };
+
+  const handleClosePasswordDialog = () => {
+    setIsPasswordDialogOpen(false);
+  };
+
+  const handleChangePassword = (currentPassword, newPassword) => {
+    changePassword(userAttributes.email, currentPassword, newPassword)
+      .then(() => {
+        setSuccessMessage('Password changed successfully!');
+        setTimeout(() => {
+          setSuccessMessage('');
+        }, 3000);
+        handleClosePasswordDialog();
+      })
+      .catch(error => {
+        console.error('Error changing password:', error);
+        setErrorMessage('Failed to change password.');
+      });
+  };
+
   return (
     <Box bgcolor={"gray"} flex={4} p={5}>
       <h1 style={{ color: 'white' }}>Account Settings</h1>
@@ -132,11 +156,18 @@ function Settings() {
         >
           {isEditing ? 'Save' : 'Edit'}
         </Button>
-        {/* Botón para mostrar/ocultar contraseña */}
-        <IconButton onClick={() => setShowPassword(!showPassword)}>{showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}</IconButton>
       </Box>
-      {/* Componente para cambiar la contraseña */}
-      <ChangePassword />
+
+      <Typography mt={4} style={{ color: 'white', cursor: 'pointer' }} onClick={handleOpenPasswordDialog}>
+        Change Password
+      </Typography>
+
+      <ChangePasswordDialog
+        isOpen={isPasswordDialogOpen}
+        onClose={handleClosePasswordDialog}
+        onChangePassword={handleChangePassword}
+      />
+
       <ConfirmDialog
         isOpen={isConfirmDialogOpen}
         onClose={handleConfirmDialogClose}
